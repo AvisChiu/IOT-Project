@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+	<body>
+		<table border="1">
+			<tr>
+				<th>UUID</th>
+				<th>Last Seen</th>
+				<th>Machine</th>
+				<th>Platform</th>
+				<th>Python</th>
+				<th>Memory</th>
+				<th>Socket</th>
+				
+				
+				
+			</tr>
+			{% for key, value in devices.items() %}
+            <tr>
+               <td>{{ key }}</td>
+			   <td>{{ value.last_seen.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+			   <td>{{ value.machine }}</td>
+			   <td>{{ value.platform }}</td>
+			   <td>{{ value.python }}</td>
+			   <td>{{ value.memory }}</td>
+			   <td>{{ value.socket_connect }}</td>
+               
+			   
+            </tr>
+			{% endfor %}
+      </table>
+   </body>
+</html>

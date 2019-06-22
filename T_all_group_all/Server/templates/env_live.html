@@ -1,0 +1,29 @@
+{% extends 'layout_u.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+
+<!-- Chart.js v2.4.0 -->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/zh-tw.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+<!--<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>-->
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<h2 id="demo">Env Data Live</h2>
+		<hr>
+
+		<button id="show" type="button">Update</button>
+		<br>
+		<canvas id="temp-canvas"></canvas>
+		<canvas id="humi-canvas"></canvas>
+
+	</div>
+</div>
+<script src="/js/env_live.js"></script>
+
+{% endblock %}

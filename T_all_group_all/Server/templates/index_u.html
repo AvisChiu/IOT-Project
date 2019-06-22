@@ -1,0 +1,87 @@
+{% extends 'layout_u.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>Welcome</h2>
+        <p>You login as {{ user_id }}</p>
+        <br>
+		<h2>Connected Devices</h2>
+		<table class="table">
+			<thead>
+			<tr>
+				<th scope="col">UUID</th>
+				<!--<th scope="col">Last Seen</th>-->
+				<th scope="col">Machine</th>
+				<th scope="col">Platform</th>
+				<th scope="col">Python</th>
+				<!--<th scope="col">Memory</th>-->
+				<th scope="col">Socket</th>
+				<th scope="col">Data</th>
+	
+			</tr>
+			</thead>
+			<tbody>
+			{% for key, value in devices.items() %}
+			{% if value.get('socket') %}
+			<tr>
+				<td><a href="dev/{{ key }}/">{{ key }}</a></td>
+				{% if value.get('info') %}
+				<td>{{ value.info.machine }}</td>
+				<td>{{ value.info.platform }}</td>
+				<td>{{ value.info.python }}</td>
+				{% else %}
+				<td colspan=3>No Info</td>
+				{% endif %}
+				<td>{{ value.socket }}</td>
+				<td>
+					<a href="/data/env">ENV</a>
+					<a href="/data/env_live">LIVE</a>
+				</td>
+			</tr>
+			{% endif %}
+			{% endfor %}
+			</tbody>
+      </table>
+	  <a class="btn btn-primary" href="/config/" role="button">Config</a>
+	  <br>
+	  <h2>Disconnected Devices</h2>
+		<table class="table">
+			<thead>
+			<tr>
+				<th scope="col">UUID</th>
+				<th scope="col">Machine</th>
+				<th scope="col">Platform</th>
+				<th scope="col">Python</th>
+				<th scope="col">Data</th>
+	
+			</tr>
+			</thead>
+			<tbody>
+			{% for key, value in devices.items() %}
+			{% if value.get('socket') == None %}
+			<tr>
+				<td><a href="dev/{{ key }}/">{{ key }}</a></td>
+				{% if value.get('info') %}
+				<td>{{ value.info.machine }}</td>
+				<td>{{ value.info.platform }}</td>
+				<td>{{ value.info.python }}</td>
+				{% else %}
+				<td colspan=3>No Info</td>
+				{% endif %}
+				<td>
+					<a href="/data/env">ENV</a>
+					<a href="/data/env_live">LIVE</a>
+				</td>
+			</tr>
+			{% endif %}
+			{% endfor %}
+			</tbody>
+      </table>
+    </div>
+</div>
+
+{% endblock %}

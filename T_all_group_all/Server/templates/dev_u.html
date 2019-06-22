@@ -1,0 +1,62 @@
+{% extends 'layout_u.html' %}
+
+{% block title %} Device {% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>Device: {{ uuid }}</h2>
+        <p>Level: {{ device.level }}</p>
+		
+		
+		
+		{% if device.get('info') %}
+		<h3>Info</h3>
+		<p>
+			Machine: {{ device.info.machine }}<br>
+			Platform: {{ device.info.platform }}<br>
+			Python: {{ device.info.python }}
+		</p>
+		{% endif %}
+		
+		{% if device.get('socket') %}
+		<h3>Socket</h3>
+		<p>
+			Address: {{ device.socket }}
+		</p>
+		
+		<h3>Config</h3>
+		
+		<form action="" method="POST">
+			<div class="form-group">
+			<p>Config JSON:</p>
+			<textarea class="form-control" rows="5" name="config" >[{"type": "serial", "com": "COM5", "baud": 9600, "tag":"env"}]</textarea>
+			<br>
+			{% if info %}
+			{% if info.status %}
+			<div class="alert alert-success" role="alert">
+				{{ info.text }}
+			</div>
+			{% else %}
+			<div class="alert alert-danger" role="alert">
+				{{ info.text }}
+			</div>
+			{% endif %}
+			{% endif %}
+			<input type="submit" class="btn btn-primary" value="Send" name="action">
+			<input type="submit" class="btn btn-warning" value="Reset" name="action">
+			</div>
+		</form>
+		
+		
+		
+		{% endif %}
+		
+		
+		
+	  
+    </div>
+</div>
+
+{% endblock %}
